@@ -24,3 +24,17 @@ RUN cd /usr/local && \
     cd FastViromeExplorer && \
     git checkout aeb2a86861890ba1c33db6df899a9bcbb6a4a7c4 && \
     javac -d bin src/*.java
+
+# Test the installation
+ADD test_data /tmp/test_data
+RUN cd /tmp && \
+    mkdir test_output && \
+    java \
+    -cp /usr/local/FastViromeExplorer/bin \
+    FastViromeExplorer \
+    -l /usr/local/FastViromeExplorer/ncbi-viruses-list.txt \
+    -1 test_data/SRR1390645.fastq.gz \
+    -i /usr/local/FastViromeExplorer/test/testset-kallisto-index.idx \
+    -o test_output && \
+    cat test_output/FastViromeExplorer-final-sorted-abundance.tsv && \
+    rm -r test_output test_data
