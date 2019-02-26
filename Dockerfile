@@ -24,10 +24,3 @@ RUN cd /usr/local && \
     cd FastViromeExplorer && \
     git checkout aeb2a86861890ba1c33db6df899a9bcbb6a4a7c4 && \
     javac -d bin src/*.java
-
-# Download the reference database
-RUN cd /usr/local/FastViromeExplorer && \
-    mkdir dbs && \
-    cd dbs && \
-    wget https://bench.cs.vt.edu/FastViromeExplorer/ncbi-virus-kallisto-index-k31.idx
-
